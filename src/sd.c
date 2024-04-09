@@ -179,8 +179,11 @@ int sd_copy(void *dst, uint32_t src_lba, uint32_t size)
         do
         {
             int bytes_per_transfer = 64;
-
+            print_uart("spi_write_bytes begin, n = ");
+            print_uart_int((uint32_t)n);
+            print_uart("\r\n");
             spi_write_bytes(ff, bytes_per_transfer, (uint8_t *)p, size);
+            print_uart("spi_write_bytes end\r\n");
             for (int i = 0; i < bytes_per_transfer; i++)
             {
                 crc = crc16(crc, p[i]);

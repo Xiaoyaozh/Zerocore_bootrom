@@ -1,5 +1,5 @@
 XLEN ?= 32
-CROSSCOMPILE ?= riscv32-unknown-linux-gnu-
+CROSSCOMPILE ?= riscv64-unknown-elf-
 CC = ${CROSSCOMPILE}gcc
 PYTHON=python
 
@@ -8,7 +8,7 @@ my_dir := /home/chlord/workspace/tool/Zerocore_bootrom
 ifeq ($(XLEN), 64)
 CFLAGS = -Os -ggdb -march=rv64imac -mabi=lp64 -Wall -mcmodel=medany -mexplicit-relocs
 else
-CFLAGS = -O2 -ggdb  -march=rv32ima_zicsr -mabi=ilp32 -W -Wall -mcmodel=medany -mexplicit-relocs -fno-builtin
+CFLAGS = -O2 -ggdb  -march=rv32ima -mabi=ilp32 -W -Wall -mcmodel=medany -mexplicit-relocs -fno-builtin
 endif
 
 CCASFLAGS = -mcmodel=medany -mexplicit-relocs

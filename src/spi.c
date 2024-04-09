@@ -98,6 +98,11 @@ int spi_write_bytes(uint8_t *bytes, uint32_t len, uint8_t *ret, uint32_t size)
     for (int i = 0; i < len; i++)
     {
         write_reg(SPI_TRANSMIT_REG, bytes[i] & 0xff);
+        for (int nop_i = 0; nop_i < 100; nop_i++)
+        {
+            __asm__ volatile(
+                "nop");
+        }
     }
 
     for (int i = 0; i < 3000; i++)
